@@ -1,0 +1,11 @@
+{
+  "name": "HealthJoy-test",
+  "version": "0.0.1",
+  "devDependencies": {
+    "requirejs": "~2.1.16",
+    "angular": "~1.4.3",
+    "angular-local-storage": "~0.1.5",
+    "lodash": "~3.10.0",
+    "almond": "~0.3.1"
+  }
+}
