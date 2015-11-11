@@ -78,7 +78,9 @@ app.filter('test', function() {
                 if (reg.test(item['address']['street']) ||
                     reg.test(item['address']['city']) ||
                     reg.test(item['address']['state'] ||
-                    reg.test(item['address']['zip']))) {
+                    reg.test(item['address']['zip'])) ||
+                    reg.test(item['age']) ||
+                    reg.test(item['company']) ) {
                         filtered.push(item);
                 }
             }
