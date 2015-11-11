@@ -10,11 +10,56 @@
     <base href="/">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/public/css/screen.css" media="screen"/>
-
+    <link rel="stylesheet" href="../app/public/css/screen.css" media="screen"/>
+    <script type="text/javascript" src="../app/public/libs/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../app/public/app.js"></script>
+    <script src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="viewport"></div>
-    <script data-main="config.js" src="/public/libs/requirejs/require.js"></script>
+<script data-main="config.js" src="../app/public/libs/requirejs/require.js"></script>
+    <div ng-controller="PaginationDemoCtrl" ng-app="plunker">
+        <pagination num-pages="noOfPages" current-page="currentPage" on-select-page="pageChanged(page)"></pagination>
+        <label>
+            На странице:
+            <select ng-model="perPage" ng-change="redraw()">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </label>
+        <label>Поиск:
+            <input type="text" ng-model="searchQuery" ng-change="redraw()" value=""/>
+        </label>
+        <label>Фильтр:
+           <input type="text" ng-model="filterQuery" value=""/>
+        </label>
+        <label>Результат поиска:
+            <input type="text" ng-model="searchResult" value="0"/>
+        </label>
+        <table>
+            <thead>
+                <tr>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Company</th>
+                    <th>E-mail</th>
+                    <th>Phone</th>
+                    <th>Age</th>
+                    <th>Address Test</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="user in users | test:filterQuery">
+                <td>{{user.name.first}}</td>
+                <td>{{user.name.last}}</td>
+                <td>{{user.company}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.address}}</td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
