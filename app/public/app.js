@@ -36,14 +36,17 @@ app.controller('PaginationDemoCtrl', ['userData', '$scope', function (userData, 
                 result = [];
                 reg = new RegExp($scope.searchQuery, 'i');
                 for (i in data) {
-                    // поиск по имени первое, второе и email и тел номер
+                    // телефонный номер из формата +1 (123) 456 7890 в 1234567890
                     var phone_str = data[i]['phone'].replace(' ', '').replace('(', '').replace(')', '').replace('-', '');
+                    // поиск только ДО символа @, так как при 'net' выдаст добрую кучу email в зоне .net
+                    var email_str = data[i]['email'].split('@')[0];
                     if ( reg.test(data[i]['name']['first']) ||
                         reg.test(data[i]['name']['last']) ||
-                        reg.test(phone_str) ) {
+                        reg.test(phone_str) ||
+                        reg.test(email_str) ) {
                         result.push(data[i]);
                     }
-                }
+                }$scope.currentPage = 1;
             }
             else {
                 result = data;
