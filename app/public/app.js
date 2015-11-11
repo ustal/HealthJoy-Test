@@ -70,6 +70,7 @@ app.controller('PaginationDemoCtrl', ['userData', '$scope', function (userData, 
 
 app.filter('test', function() {
     // TODO в связи с асинхронной загрузкой фильтр применяется ДО загрузки data.json, соотв и items не существует.
+    //
     return function(items, filterQuery) {
         var filtered = [];
             for (var i = 0; i < items.length; i++) {
